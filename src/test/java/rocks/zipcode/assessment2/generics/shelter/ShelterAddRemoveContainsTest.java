@@ -16,6 +16,7 @@ import java.util.function.Supplier;
 public class ShelterAddRemoveContainsTest {
     @Test
     public void testPerson() {
+
         // given
         int numberOfPerson = 10;
         Supplier<Ageable> supplier = Person::new;
