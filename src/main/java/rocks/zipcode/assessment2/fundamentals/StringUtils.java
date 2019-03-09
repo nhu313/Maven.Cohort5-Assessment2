@@ -10,7 +10,14 @@ public class StringUtils {
      * @return `stringToBePadded` flushed right by left-padding
      */
     public static String padLeft(String stringToBePadded, int amountOfPadding) {
-        return null;
+        //short way
+//        String format = "%" + amountOfPadding + "s";
+//        return String.format(format, stringToBePadded);
+
+        //long way
+        int amountOfSpaces = amountOfPadding - stringToBePadded.length();
+        String spaces = repeatString(" ", amountOfSpaces);
+        return  spaces + stringToBePadded;
     }
 
     /**
@@ -19,7 +26,14 @@ public class StringUtils {
      * @return `stringToBePadded` flushed right by right-padding
      */
     public static String padRight(String stringToBePadded, int amountOfPadding) {
-        return null;
+        //short way
+//        String format = "%-" + amountOfPadding + "s";
+//        return String.format(format, stringToBePadded);
+
+        //long way
+        int amountOfSpaces = amountOfPadding - stringToBePadded.length();
+        String spaces = repeatString(" ", amountOfSpaces);
+        return stringToBePadded + spaces;
     }
 
     /**
@@ -28,7 +42,12 @@ public class StringUtils {
      * @return the string repeated and concatenated `n` times
      */
     public static String repeatString(String stringToBeRepeated, int numberOfTimeToRepeat) {
-        return null;
+        String result = "";
+        for (int i = 0; i < numberOfTimeToRepeat; i++) {
+            result += stringToBeRepeated;
+        }
+
+        return result;
     }
 
     /**
@@ -36,7 +55,17 @@ public class StringUtils {
      * @return - true if string only contains alpha characters
      */
     public static Boolean isAlphaString(String string) {
-        return null;
+        //short way using regex (you will learn this later)
+        //return string.matches("[a-zA-z ]+");
+
+        for (int i = 0; i < string.length(); i++) {
+            char c = string.charAt(i);
+            if(!(Character.isLetter(c) || c == ' ')) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -44,7 +73,17 @@ public class StringUtils {
      * @return - true if string only contains numeric characters
      */
     public static Boolean isNumericString(String string) {
-        return null;
+//        short way
+//        return string.matches("[0-9]+");
+
+        for (int i = 0; i < string.length(); i++) {
+            char c = string.charAt(i);
+            if(!Character.isDigit(c)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -52,6 +91,19 @@ public class StringUtils {
      * @return - true if string only contains special characters
      */
     public static Boolean isSpecialCharacterString(String string) {
-        return null;
+        //short way
+        //return string.matches(".*[&*{}()]+.*");
+
+//        long way
+        String specialCharacters = "&*{}()";
+        for (int i = 0; i < string.length(); i++) {
+            char c = string.charAt(i);
+            String strChar = Character.toString(c);
+            if(specialCharacters.contains(strChar)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
